@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KunUz</title>
+    <style>
+        .container{
+             width: 90%;
+             backround-color: antiquewhite;
+             margin: 0 auto;
+             padding: 20px 10px;
+        }
+        .navbar{
+           display: flex;
+           justify-content: space-around;
+        }
+        .navbar a{
+            text-decoration: none;
+            font-size: 25px;
+        }
+        .maqola{
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+     <div class="container">
+         <div class="navbar">
+             <a href="">Home</a>
+              <a href="">Contact</a>
+              <a href="">About us</a>
+              <a href="">Help</a>
+         </div>
+         {% for maqola in maqolalar%}
+         <div class="maqola">
+             <h2>{{ maqola.title}}</h2>
+             <p>{{ maqola.description}}</p>
+             <h4>Author {{maqola.author}}</h4>
+             <p>Yaratilgan vaqt:{{maqola.created_at}}</p>
+             <hr>
+         </div>
+         {% endfor %}
+
+     </div>
+</body>
+</html>
