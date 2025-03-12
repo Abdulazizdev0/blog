@@ -28,12 +28,12 @@
 <body>
      <div class="container">
          {% include 'navbar_links.html' %}
-         {% for maqola in maqolalar%}
+         {% for w_new in w_news %}
          <div class="maqola">
-             <h2>{{ maqola.title }}</h2>
-             <p>{{ maqola.description }}</p>
-             <h4>Author {{ maqola.author }}</h4>
-             <p>Yaratilgan vaqt:{{ maqola.created_at }}</p>
+             <h2>{{ w_new.title }}</h2>
+             <p>{{ w_new.description }}</p>
+             <h4>Author {{ w_new.author }}</h4>
+             <p>Yaratilgan vaqt:{{ w_new.created_at }}</p>
              <hr>
          </div>
          {% endfor %}
