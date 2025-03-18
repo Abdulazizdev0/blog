@@ -20,6 +20,7 @@ def world_news(request):
     print(w_news)
     context = {
         'w_news':w_news
+
     }
     return render(
         request=request,
