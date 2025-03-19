@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-{%  load static %}
 <head>
     <meta charset="UTF-8">
     <title>KunUz</title>
@@ -9,6 +8,12 @@
 <body>
      <div class="container">
          {% include 'navbar_links.html' %}
+     <form method="post">
+         <input name="email", type="email" placeholder="Emailingizni kiriting">
+         <input name="password", type="password" placeholder="Parolingizni kiriting">
+
+     </form>
+
 
 
      </div>
