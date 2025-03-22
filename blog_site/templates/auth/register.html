@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <title>KunUz</title>
@@ -7,7 +8,19 @@
 </head>
 <body>
      <div class="container">
-         {% include 'navbar_links.html' %}
+
+     <form method="post">
+         {% csrf_token %}
+         <input name="email", type="email" placeholder="Emailingizni kiriting">
+         <input name="first_name", type="text" placeholder="Ismingizni kiriting kiriting">
+         <input name="last_name", type="text" placeholder="Familiyangizni kiriting">
+         <input name="password", type="password" placeholder="Parolingizni kiriting">
+         <input name="password", type="password" placeholder="Parolingizni kiriting">
+
+         <button type="submit">Send</button>
+
+     </form>
+
 
 
      </div>
