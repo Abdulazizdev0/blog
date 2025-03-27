@@ -4,17 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <title>KunUz</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <link rel="stylesheet" href="{% static 'auth/register.css' %}">
 </head>
 <body>
      <div class="container">
 
-     <form method="post">
+       <form method="post">
          {% csrf_token %}
+         <label for="">Email</label>
          <input name="email", type="email" placeholder="Emailingizni kiriting">
+
+         <label for="">Firstname</label>
          <input name="first_name", type="text" placeholder="Ismingizni kiriting kiriting">
+
+         <label for="">Lastname</label>
          <input name="last_name", type="text" placeholder="Familiyangizni kiriting">
+
+         <label for="">Password</label>
          <input name="password", type="password" placeholder="Parolingizni kiriting">
+
+         <label for="">Conf Password</label>
          <input name="password", type="password" placeholder="Parolingizni kiriting">
 
          <button type="submit">Send</button>

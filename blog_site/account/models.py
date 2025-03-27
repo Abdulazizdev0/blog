@@ -2,6 +2,7 @@ from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.hashers import make_password,check_password
 
 class CustomUserManager(BaseUserManager):
     def create_user(self,email,password, **extra_fields):
@@ -10,6 +11,9 @@ class CustomUserManager(BaseUserManager):
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
+        print(user.password)
+        user.is_staff = True
+        user.is_active = True
         user.save()
         return user
 
@@ -22,6 +26,7 @@ class CustomUserManager(BaseUserManager):
             raise ValueError(_("Super user must have is_staff = True"))
         if extra_fields.get("is_superuser") is not True:
             raise ValueError(_("Superuser must have is_superuser = True"))
+        print('SUPERUSER')
         return self.create_user(email,password, **extra_fields)
 
 
@@ -31,7 +36,6 @@ class CustomUser(AbstractUser):
     username = None
     first_name = models.CharField(max_length=222,null=True,blank=True)
     last_name = models.CharField(max_length=222,null=True,blank=True)
-    password = models.CharField(max_length=222)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -41,6 +45,10 @@ class CustomUser(AbstractUser):
     REQUIRED_FIELDS = []
 
     objects = CustomUserManager()
+
+    # def set_password(self, raw_password):
+    #     self.password = make_password(raw_password)
+    #     self._password = raw_password
 
     def __str__(self):
         return self.email

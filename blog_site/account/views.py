@@ -19,12 +19,13 @@ def register(request):
         elif password1 != password2:
             return HttpResponse('<h1>Parollarni togri kiriting </h1>')
         else:
-            user = CustomUser.objects.create(
-                email = email,
+            user = CustomUser(
+                email=email,
                 first_name=first_name,
-                last_name=last_name,
-                password = make_password(password2)
+                last_name=last_name
             )
+            user.set_password(password1)
+            user.save()
             login(request=request,user=user)
             return redirect('maqola')
 
@@ -34,4 +35,26 @@ def register(request):
         template_name='auth/register.html'
     )
 
-# Create your views here.
+def log_in(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        print(email)
+        password = request.POST.get('password')
+        print(password)
+        user = authenticate(email=email,password=password)
+        print(user)
+        if user:
+            login(request=request, user=user)
+            return redirect('maqola')
+        else:
+            return redirect('login')
+    return render(
+        request=request,
+        template_name='auth/login.html'
+
+    )
+
+def log_out(request):
+    if request.user.is_authenticated:
+        logout(request)
+        return redirect('maqola')
